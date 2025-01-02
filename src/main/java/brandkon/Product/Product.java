@@ -15,6 +15,7 @@ public class Product {
     private int price;
     private String imageUrl;
     private int expirationDays;
+    private int salesVolume;
 
     @ManyToOne
     private Brand brand;

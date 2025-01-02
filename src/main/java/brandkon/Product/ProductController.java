@@ -27,6 +27,11 @@ public class ProductController {
         productService.productDetail(id);
     }
 
+    @GetMapping("/products/popular")
+    public void getPopularProducts(@RequestParam(required = false) Long categoryId,
+                                   @RequestParam(required = false) Long brandId){
+        productService.top5PopularProducts();
+    }
 
 
 }

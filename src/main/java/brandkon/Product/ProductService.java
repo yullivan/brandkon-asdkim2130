@@ -2,9 +2,11 @@ package brandkon.Product;
 
 import brandkon.Brand.Brand;
 import brandkon.Brand.BrandRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProductService {
 
     private final ProductRepository productRepository;
@@ -54,6 +56,21 @@ public class ProductService {
                 products.getPrice(),
                 brandResponse,
                 products.getExpirationDays());
+    }
+
+    public List<ProductResponse> top5PopularProducts(){
+        List<Product> products = productRepository.findTop5ByOrderBySalesVolumeDesc();
+
+        return products.stream()
+                .map(product -> new ProductResponse(
+                       product.getId(),
+                        product.getBrandName(),
+                        product.getProductName(),
+                        product.getPrice(),
+                        product.getImageUrl()
+                )).toList();
+
+
     }
 
 }

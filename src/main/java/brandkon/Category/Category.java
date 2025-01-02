@@ -1,20 +1,19 @@
 package brandkon.Category;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import brandkon.Brand.Brand;
+import jakarta.persistence.*;
 
 @Entity
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String name;
-    String slug;
-    String imageUrl;
+    private String name;
+    private String slug;
+    private String imageUrl;
+
 
     public Category(Long id, String name, String slug, String imageUrl) {
         this.id = id;

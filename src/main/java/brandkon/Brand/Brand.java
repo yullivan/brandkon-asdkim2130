@@ -1,9 +1,7 @@
 package brandkon.Brand;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import brandkon.Category.Category;
+import jakarta.persistence.*;
 
 @Entity
 public class Brand {
@@ -14,6 +12,10 @@ public class Brand {
     private String name;
     private String imageUrl;
     private String guidelines;
+
+    @ManyToOne
+    private Category category;
+
 
     public Brand() {
     }
