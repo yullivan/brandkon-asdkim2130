@@ -21,7 +21,11 @@ public class ProductController {
         productService.listAllProducts(brandId);
     }
 
-
+    // 상품 상세 조회
+    @GetMapping("/products/{productId}")
+    public void getDetailProduct (@PathVariable(name = "productId") Long id){
+        productService.productDetail(id);
+    }
 
 
 

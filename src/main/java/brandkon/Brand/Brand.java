@@ -10,9 +10,10 @@ public class Brand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String name;
-    String imageUrl;
+    private Long id;
+    private String name;
+    private String imageUrl;
+    private String guidelines;
 
     public Brand() {
     }
@@ -22,6 +23,8 @@ public class Brand {
         this.name = name;
         this.imageUrl = imageUrl;
     }
+
+
 
 
     public Long getId() {
@@ -34,5 +37,9 @@ public class Brand {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getGuidelines() {
+        return guidelines;
     }
 }

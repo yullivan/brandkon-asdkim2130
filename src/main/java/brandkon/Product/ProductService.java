@@ -16,27 +16,44 @@ public class ProductService {
     }
 
     //상품목록조회(brandId 확인하기)
-    public List<ProductResponse> listAllProducts(Long brandId){
-        if(brandId != null){
-            return productRepository.findByBrandId(brandId).stream()
+    public List<ProductResponse> listAllProducts(Long brandId) {
+        if (brandId != null) {
+            return productRepository.findByBrandId(brandId)
+                    .stream()
                     .map(product -> new ProductResponse(
                             product.getId(),
                             product.getBrandName(),
                             product.getProductName(),
                             product.getPrice(),
-                            product.getImageUrl())).toList();
-        }else
-        return productRepository.findAll().stream()
+                            product.getImageUrl()))
+                    .toList();
+        }
+        return productRepository.findAll()
+                .stream()
                 .map(product -> new ProductResponse(
                         product.getId(),
                         product.getBrandName(),
                         product.getProductName(),
                         product.getPrice(),
-                        product.getImageUrl())).toList();
-
-
+                        product.getImageUrl()))
+                .toList();
     }
 
+    public ProductDetailResponse productDetail(Long id) {
+        Product products = productRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 상품이 존재하지 않습니다."));
 
+        ProductDetailResponse.Brand brandResponse = new ProductDetailResponse.Brand(
+                products.getBrand().getId(),
+                products.getBrand().getName(),
+                products.getBrand().getGuidelines());
+
+
+        return new ProductDetailResponse(products.getId(),
+                products.getProductName(),
+                products.getPrice(),
+                brandResponse,
+                products.getExpirationDays());
+    }
 
 }

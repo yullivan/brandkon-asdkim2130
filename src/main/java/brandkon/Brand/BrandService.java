@@ -20,12 +20,12 @@ public class BrandService {
     }
 
     public BrandDetailResponse brandDetail(Long id){
-        Brand brand = brandRepository.findById(id).orElseThrow(
+        Brand brands = brandRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("찾는 브랜드가 존재하지 않습니다."));
 
-        return new BrandDetailResponse(brand.id,
-                brand.name,
-                brand.imageUrl);
+        return new BrandDetailResponse(brands.getId(),
+                brands.getName(),
+                brands.getImageUrl());
     }
 
 }
