@@ -1,6 +1,7 @@
 package brandkon.Brand;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BrandService {
 
@@ -18,6 +19,13 @@ public class BrandService {
 
     }
 
+    public BrandDetailResponse brandDetail(Long id){
+        Brand brand = brandRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("찾는 브랜드가 존재하지 않습니다."));
 
+        return new BrandDetailResponse(brand.id,
+                brand.name,
+                brand.imageUrl);
+    }
 
 }
