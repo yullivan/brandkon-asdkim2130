@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class ProductController {
 
@@ -17,20 +19,21 @@ public class ProductController {
 
     // 상품 목록 조회
     @GetMapping("/products")
-    public void getProductsList (@RequestParam(required = false) Long brandId){
-        productService.listAllProducts(brandId);
+    public List<ProductResponse> getProductsList (@RequestParam(required = false) Long brandId){
+        return productService.listAllProducts(brandId);
     }
 
     // 상품 상세 조회
     @GetMapping("/products/{productId}")
-    public void getDetailProduct (@PathVariable(name = "productId") Long id){
-        productService.productDetail(id);
+    public ProductDetailResponse getDetailProduct (@PathVariable(name = "productId") Long id){
+        return productService.productDetail(id);
     }
 
+    // 인기 상품 조회
     @GetMapping("/products/popular")
-    public void getPopularProducts(@RequestParam(required = false) Long categoryId,
-                                   @RequestParam(required = false) Long brandId){
-        productService.top5PopularProducts();
+    public List<ProductResponse> getPopularProducts(@RequestParam(required = false) Long categoryId,
+                                                    @RequestParam(required = false) Long brandId){
+        return productService.top5PopularProducts();
     }
 
 

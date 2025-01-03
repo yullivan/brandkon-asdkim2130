@@ -15,7 +15,8 @@ public class BrandService {
     }
 
     public List<BrandResponse> listAllBrand(){
-        return brandRepository.findAll().stream()
+        return brandRepository.findAll()
+                .stream()
                 .map(brand -> new BrandResponse(brand.getId(),
                         brand.getName(),
                         brand.getImageUrl())).toList();
